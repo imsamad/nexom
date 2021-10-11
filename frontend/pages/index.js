@@ -1,4 +1,4 @@
-import Homescreen from "../components/Homescreen";
+import Homescreen from '../components/Homescreen';
 const index = ({ products }) => {
   return <Homescreen products={products} />;
 };
@@ -12,7 +12,7 @@ export async function getStaticProps() {
   const products = await res.json();
   return {
     props: { products },
-    revalidate:1
+    revalidate: 1,
   };
 }
 

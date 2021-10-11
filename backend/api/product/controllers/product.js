@@ -17,7 +17,7 @@ module.exports = {
         ...ctx.query,
       });
     }
-    entities = entities.map(({ orders, ...rest }) => ({ ...rest }));
+    entities = entities.map(({ orders, ...rest }) => rest);
     return entities.map((entity) =>
       sanitizeEntity(entity, { model: strapi.models.product })
     );

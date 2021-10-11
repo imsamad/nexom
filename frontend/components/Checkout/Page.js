@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import AddressForm from "./Forms/AddressForm";
-import axios from "axios";
-import PayButton from "./PayButton";
-import ReviewOrder from "./ReviewOrder";
-import PaymentMethodForm from "./Forms/PaymentMethodForm";
-import checkOutSchema from "./FormModel/CheckOutSchema";
+import { useState, useEffect } from 'react';
+import AddressForm from './Forms/AddressForm';
+import axios from 'axios';
+import PayButton from './PayButton';
+import ReviewOrder from './ReviewOrder';
+import PaymentMethodForm from './Forms/PaymentMethodForm';
+import checkOutSchema from './FormModel/CheckOutSchema';
 import {
   Typography,
   Stepper,
@@ -13,27 +13,27 @@ import {
   makeStyles,
   Button,
   CircularProgress,
-} from "@material-ui/core";
-import { Formik, Form } from "formik";
-import initialValues from "./FormModel/formInitialValues";
-import validationSchema from "./FormModel/validationSchema";
-import { placeOrder } from "../../utils/placeOrder";
-import { useRouter } from "next/router";
+} from '@material-ui/core';
+import { Formik, Form } from 'formik';
+import initialValues from './FormModel/formInitialValues';
+import validationSchema from './FormModel/validationSchema';
+import { placeOrder } from '../../utils/placeOrder';
+import { useRouter } from 'next/router';
 const { formId, formField } = checkOutSchema;
-import { API_URL as url } from "../../utils/utils";
+import { API_URL as url } from '../../utils/utils';
 import {
   listForOrder,
   deleteCart,
   getCartItems,
-} from "../../utils/cartActions";
-import useUser from "../../lib/useUser";
+} from '../../utils/cartActions';
+import useUser from '../../lib/useUser';
 const useStyles = makeStyles((theme) => ({
   stepper: {
     padding: theme.spacing(3, 0, 5),
   },
   buttons: {
-    display: "flex",
-    justifyContent: "flex-end",
+    display: 'flex',
+    justifyContent: 'flex-end',
   },
   button: {
     marginTop: theme.spacing(3),
@@ -41,12 +41,12 @@ const useStyles = makeStyles((theme) => ({
   },
   wrapper: {
     margin: theme.spacing(1),
-    position: "relative",
+    position: 'relative',
   },
   buttonProgress: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
   },
 }));
 const _renderStepContent = (step = 0) => {
@@ -62,18 +62,17 @@ const _renderStepContent = (step = 0) => {
   }
 };
 
-const CheckOutPage = ( {user}) => {
-
+const CheckOutPage = ({ user }) => {
   const router = useRouter();
   useEffect(() => {
     const isCartItems = getCartItems();
-    !isCartItems && router.push("/");
+    !isCartItems && router.push('/');
   }, []);
   const steps = [
-    "Shipping address",
-    "Payment Method",
-    "Review your order",
-    "Paid",
+    'Shipping address',
+    'Payment Method',
+    'Review your order',
+    'Paid',
   ];
   const [activeStep, setActiveStep] = useState(0);
   const [paymentData, setPaymentData] = useState();
@@ -83,11 +82,12 @@ const CheckOutPage = ( {user}) => {
     if (activeStep === 2) {
       const items = listForOrder();
       const orderItem = placeOrder({ address: values, items });
+      console.log('orderItem', orderItem);
       try {
         const res = await axios(`${url}/orders`, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             authorization: `Bearer ${user}`,
           },
           data: orderItem,
@@ -109,7 +109,7 @@ const CheckOutPage = ( {user}) => {
   const combineInitialValues = { ...initialValues[0], ...initialValues[1] };
   return (
     <>
-      <Typography component='h1' variant='h4' align='center' gutterBottom>
+      <Typography component="h1" variant="h4" align="center" gutterBottom>
         Checkout
       </Typography>
       <Stepper activeStep={activeStep} className={cls.stepper} alternativeLabel>
@@ -145,11 +145,11 @@ const CheckOutPage = ( {user}) => {
                     <Button
                       disabled={isSubmitting}
                       className={cls.button}
-                      type='submit'
-                      variant='contained'
-                      color='primary'
+                      type="submit"
+                      variant="contained"
+                      color="primary"
                     >
-                      {activeStep === 2 ? "Place Order" : "Next"}
+                      {activeStep === 2 ? 'Place Order' : 'Next'}
                     </Button>
                     {isSubmitting && (
                       <CircularProgress

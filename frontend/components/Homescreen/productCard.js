@@ -5,17 +5,17 @@ import {
   Divider,
   IconButton,
   CardActionArea,
-} from "@material-ui/core";
-import Link from "next/link";
-import Drawer from "../Drawer";
-import React, { useState } from "react";
-import { addToCart } from "../../utils/cartActions";
-import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
-import Star from "@material-ui/icons/Star";
-import StarHalf from "@material-ui/icons/StarHalf";
-import CartIcon from "@material-ui/icons/AddShoppingCart";
-import useStyles from "./style";
-import Image from "next/image";
+} from '@material-ui/core';
+import Link from 'next/link';
+import Drawer from '../Drawer';
+import React, { useState } from 'react';
+import { addToCart } from '../../utils/cartActions';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import Star from '@material-ui/icons/Star';
+import StarHalf from '@material-ui/icons/StarHalf';
+import CartIcon from '@material-ui/icons/AddShoppingCart';
+import useStyles from './style';
+import Image from 'next/image';
 const index = ({ product, detailPage }) => {
   const [drawer, setDrawer] = useState(false);
   const toggleDrawer = () => {
@@ -23,6 +23,7 @@ const index = ({ product, detailPage }) => {
   };
 
   const classes = useStyles();
+
   return (
     <>
       <div className={classes.productWrapper}>
@@ -32,55 +33,55 @@ const index = ({ product, detailPage }) => {
               <Image
                 src={product.image.url}
                 alt={product.meta_title}
-                width={detailPage ? "150" : "200"}
-                height={detailPage ? "150" : "200"}
+                width={detailPage ? '150' : '200'}
+                height={detailPage ? '150' : '200'}
               />
             </CardActionArea>
           </Link>
           <div className={classes.offInfo}>25% off</div>
-          <Tooltip title='Add To cart' placement='top'>
+          <Tooltip title="Add To cart" placement="top">
             <IconButton
               className={classes.addIcon}
               onClick={() => {
                 addToCart(product.id).then(() => toggleDrawer());
               }}
             >
-              <CartIcon size='small' />
+              <CartIcon size="small" />
             </IconButton>
           </Tooltip>
         </div>
         {detailPage && <Divider />}
         <div className={classes.info}>
           <div className={classes.infoTop}>
-            <Typography variant='h3' className={classes.smTitle}>
+            <Typography variant="h3" className={classes.smTitle}>
               LIFESTYLE
             </Typography>
             <div className={classes.rating}>
-              <Star fontSize='small' /> <Star fontSize='small' />
-              <Star fontSize='small' />
-              <StarHalf fontSize='small' />
+              <Star fontSize="small" /> <Star fontSize="small" />
+              <Star fontSize="small" />
+              <StarHalf fontSize="small" />
             </div>
           </div>
           {/* <Link href={`/product/${product.slug}`}> */}
-          <Typography variant='h2' className={classes.productName} gutterBottom>
+          <Typography variant="h2" className={classes.productName} gutterBottom>
             {product.name}
           </Typography>
           {/* </Link> */}
           <div className={classes.lowest}>
-            <Typography variant='subtitle1' className={classes.priceCut}>
+            <Typography variant="subtitle1" className={classes.priceCut}>
               ${product.price + 25}
             </Typography>
-            <Typography variant='subtitle1' className={classes.price}>
+            <Typography variant="subtitle1" className={classes.price}>
               ${product.price}
             </Typography>
             <Button
               style={{
-                background: "#40c9a2",
-                marginTop: "15px",
-                justifySelf: "end",
+                background: '#40c9a2',
+                marginTop: '15px',
+                justifySelf: 'end',
               }}
-              size='small'
-              variant='contained'
+              size="small"
+              variant="contained"
               endIcon={<ShoppingBasketIcon />}
               disableElevation
             >

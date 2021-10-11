@@ -15,7 +15,7 @@ const clg = (value, label) => {
   console.log(`++++++++++++++++${label} End++++++++++++++++++++`);
 };
 module.exports = {
-  async create(ctx) { 
+  async create(ctx) {
     const { user } = ctx.state;
     const {
       body: {
@@ -37,6 +37,7 @@ module.exports = {
         },
       },
     } = ctx.request;
+    console.log("ctx.requestctx.request", ctx.request);
     if (
       !products ||
       !paymentMethod ||

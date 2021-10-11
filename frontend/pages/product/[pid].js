@@ -1,5 +1,5 @@
-import ProductDetail from "../../components/ProductDetail";
-import { NextSeo } from "next-seo";
+import ProductDetail from '../../components/ProductDetail';
+import { NextSeo } from 'next-seo';
 const pid = ({ product }) => {
   const seo = {
     title: product?.name,
@@ -13,8 +13,7 @@ const pid = ({ product }) => {
     </>
   );
 };
-  const url =
-    process.env.NEXT_PUBLIC_API_PRO || process.env.NEXT_PUBLIC_API_DEV;
+const url = process.env.NEXT_PUBLIC_API_PRO || process.env.NEXT_PUBLIC_API_DEV;
 
 export const getStaticPaths = async () => {
   const res = await fetch(`${url}/products`);
@@ -27,24 +26,23 @@ export const getStaticPaths = async () => {
 };
 
 export async function getStaticProps(ctx) {
-  try{
-  const { params }=ctx 
-  const res = await fetch(`${url}/products?slug=${params.pid}`);
-  const product = await res.json(); 
-  if(!res.ok || product.length===0 ){
-    throw new Error()
-  }
-  return {
-    props: {
-      product: product[0],
-    },
+  try {
+    const { params } = ctx;
+    const res = await fetch(`${url}/products?slug=${params.pid}`);
+    const product = await res.json();
+    if (!res.ok || product.length === 0) {
+      throw new Error();
+    }
+    return {
+      props: {
+        product: product[0],
+      },
       revalidate: 1,
-  };
-
-  }catch(err){
-return {
+    };
+  } catch (err) {
+    return {
       redirect: {
-        destination: "/",
+        destination: '/',
         permanent: false,
       }, //Redirecting at build-time is currently not allowed and if the redirects are known at build-time they should be added in next.config.js.
     };
