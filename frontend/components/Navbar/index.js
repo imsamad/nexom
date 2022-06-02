@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { IconButton, Toolbar, AppBar, Typography } from "@material-ui/core";
-import MoreIcon from "@material-ui/icons/MoreVert";
-import useStyles from "./nav_css";
-import useUser from "../../lib/useUser";
-import SigninDialog from "../Signin";
-import Drawer from "../Drawer";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { IconButton, Toolbar, AppBar, Typography } from '@material-ui/core';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import useStyles from './nav_css';
+import useUser from '../../lib/useUser';
+import SigninDialog from '../Signin';
+import Drawer from '../Drawer';
 // import SearchComponent from "./Search";
-import ProfileMenu from "./ProfileMenu";
-import MobileMenu from "./MobileMenu";
-import DesktopMenu from "./DesktopMenu";
+import ProfileMenu from './ProfileMenu';
+import MobileMenu from './MobileMenu';
+import DesktopMenu from './DesktopMenu';
 export default function PrimarySearchAppBar() {
   const { user, mutateUser } = useUser();
   const logout = async () => {
-    await fetch("/api/logout");
+    await fetch('/api/logout');
     mutateUser();
   };
   const classes = useStyles();
@@ -44,10 +44,10 @@ export default function PrimarySearchAppBar() {
   let cartQty = 0;
   return (
     <div className={classes.grow}>
-      <AppBar color='transparent' position='fixed'>
-        <Toolbar variant='dense'>
-          <Link href='/'>
-            <Typography className={classes.title} variant='h6'>
+      <AppBar color="transparent" position="fixed">
+        <Toolbar variant="dense">
+          <Link href="/">
+            <Typography className={classes.title} variant="h6">
               NEXOM
             </Typography>
           </Link>
@@ -62,7 +62,7 @@ export default function PrimarySearchAppBar() {
           />
 
           <div className={classes.sectionMobile}>
-            <IconButton onClick={handleMobileMenuOpen} color='inherit'>
+            <IconButton onClick={handleMobileMenuOpen} color="inherit">
               <MoreIcon />
             </IconButton>
           </div>

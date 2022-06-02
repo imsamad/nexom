@@ -16,12 +16,13 @@ import StarHalf from '@material-ui/icons/StarHalf';
 import CartIcon from '@material-ui/icons/AddShoppingCart';
 import useStyles from './style';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 const index = ({ product, detailPage }) => {
   const [drawer, setDrawer] = useState(false);
   const toggleDrawer = () => {
     setDrawer(!drawer);
   };
-
+  const router = useRouter();
   const classes = useStyles();
 
   return (
@@ -33,22 +34,12 @@ const index = ({ product, detailPage }) => {
               <Image
                 src={product.image.url}
                 alt={product.meta_title}
-                width={detailPage ? '150' : '200'}
-                height={detailPage ? '150' : '200'}
+                width="400"
+                height="300"
               />
             </CardActionArea>
           </Link>
-          <div className={classes.offInfo}>25% off</div>
-          <Tooltip title="Add To cart" placement="top">
-            <IconButton
-              className={classes.addIcon}
-              onClick={() => {
-                addToCart(product.id).then(() => toggleDrawer());
-              }}
-            >
-              <CartIcon size="small" />
-            </IconButton>
-          </Tooltip>
+          {/* <div className={classes.offInfo}>25% off</div> */}
         </div>
         {detailPage && <Divider />}
         <div className={classes.info}>
@@ -62,18 +53,32 @@ const index = ({ product, detailPage }) => {
               <StarHalf fontSize="small" />
             </div>
           </div>
-          {/* <Link href={`/product/${product.slug}`}> */}
-          <Typography variant="h2" className={classes.productName} gutterBottom>
-            {product.name}
-          </Typography>
-          {/* </Link> */}
-          <div className={classes.lowest}>
-            <Typography variant="subtitle1" className={classes.priceCut}>
-              ${product.price + 25}
+          <Link href={`/product/${product.slug}`}>
+            <Typography
+              variant="h2"
+              className={classes.productName}
+              gutterBottom
+            >
+              {product.name}
             </Typography>
+          </Link>
+          <div className={classes.lowest}>
+            {/* <Typography variant="subtitle1" className={classes.priceCut}>
+              ${(product.price + 25).toFixed(2)}
+            </Typography> */}
             <Typography variant="subtitle1" className={classes.price}>
               ${product.price}
             </Typography>
+
+            <IconButton
+              // className={classes.addIcon}
+              onClick={() => {
+                addToCart(product.id).then(() => toggleDrawer());
+              }}
+            >
+              <CartIcon size="small" />
+            </IconButton>
+
             <Button
               style={{
                 background: '#40c9a2',
@@ -84,6 +89,11 @@ const index = ({ product, detailPage }) => {
               variant="contained"
               endIcon={<ShoppingBasketIcon />}
               disableElevation
+              onClick={() => {
+                addToCart(product.id).then(() => {
+                  router.push('/cart');
+                });
+              }}
             >
               Buy
             </Button>

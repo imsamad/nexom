@@ -1,8 +1,10 @@
-import { Grid, Button } from "@material-ui/core";
-import { STRIPE_PK, API_URL as url } from "../../../utils/utils";
-import { loadStripe } from "@stripe/stripe-js";
-import PayIcon from "@material-ui/icons/AccountBalance";
-const stripePromise = loadStripe(STRIPE_PK);
+import { Grid, Button } from '@material-ui/core';
+
+const stripePublicKey = process.env.NEXT_PUBLIC_STRIPE_PK;
+
+import { loadStripe } from '@stripe/stripe-js';
+import PayIcon from '@material-ui/icons/AccountBalance';
+const stripePromise = loadStripe(stripePublicKey);
 const index = ({ data }) => {
   const handleBuy = async () => {
     const stripe = await stripePromise;
@@ -16,10 +18,10 @@ const index = ({ data }) => {
       <Grid xs={12} item>
         <Button
           onClick={handleBuy}
-          color='primary'
-          variant='contained'
+          color="primary"
+          variant="contained"
           fullWidth
-          size='large'
+          size="large"
           startIcon={<PayIcon />}
         >
           Pay ${data.price}
@@ -27,7 +29,7 @@ const index = ({ data }) => {
       </Grid>
     </Grid>
   ) : (
-    "Try Again"
+    'Try Again'
   );
 };
 

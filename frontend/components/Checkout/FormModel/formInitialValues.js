@@ -1,4 +1,4 @@
-import checkoutFormModel from "./CheckOutSchema";
+import checkoutFormModel from './CheckOutSchema';
 const {
   formField: {
     firstName,
@@ -18,17 +18,17 @@ const {
 } = checkoutFormModel;
 export default [
   {
-    [firstName.name]: "",
-    [lastName.name]: "",
-    [address1.name]: "",
-    [address2.name]: "",
-    [city.name]: "",
-    [zipcode.name]: "",
-    [country.name]: "",
-    [state.name]: "",
+    [firstName.name]: 'Abdus',
+    [lastName.name]: 'Samad',
+    [address1.name]: 'On Cantt Road',
+    [address2.name]: 'Near V-Mart',
+    [city.name]: 'Roorkee',
+    [zipcode.name]: '60000',
+    [country.name]: '',
+    [state.name]: '',
   },
   {
-    [paymentMethod.name]: "",
+    [paymentMethod.name]: '',
   },
   // {
   //   [nameOnCard.name]: "Abdus Samad",

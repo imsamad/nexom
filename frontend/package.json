@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3002",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
@@ -29,5 +29,9 @@
     "react-swipeable-views": "^0.13.9",
     "swr": "^0.4.1",
     "yup": "^0.32.8"
+  },
+  "engines": {
+    "node": ">=10.16.0 <=14.x.x",
+    "npm": "^6.0.0"
   }
 }

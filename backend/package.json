@@ -7,7 +7,8 @@
     "dev": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "deploy": "heroku container:login && docker push registry.heroku.com/nexom/web:2 && heroku container:push web --app nexom && heroku container:release web -a nexom"
   },
   "devDependencies": {},
   "dependencies": {
